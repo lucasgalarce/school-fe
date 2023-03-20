@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -27,8 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const CreateCourse = () => {
-  const router = useRouter();
+interface CreateCourseInterface {
+  fetchTableData: () => {};
+}
+const CreateCourse: React.FC<CreateCourseInterface> = ({ fetchTableData }) => {
   const classes = useStyles();
   const [course, setCourse] = useState<CreateCourseType>({ name: "" });
 
@@ -37,10 +38,11 @@ const CreateCourse = () => {
     setCourse({ ...course, [name]: value });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      createCourse({ name: course.name });
+      await createCourse({ name: course.name });
+      fetchTableData();
       setCourse({ name: "" });
     } catch (err) {
       console.log(err);

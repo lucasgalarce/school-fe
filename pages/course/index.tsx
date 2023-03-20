@@ -30,7 +30,7 @@ const CreateCoursePage = () => {
 
   return (
     <div>
-      <CreateCourse />
+      <CreateCourse fetchTableData={fetchTableData} />
       <CourseTable courses={data} />
     </div>
   );
