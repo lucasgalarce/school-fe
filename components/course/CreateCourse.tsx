@@ -6,31 +6,12 @@ import Typography from "@material-ui/core/Typography";
 
 import { createCourse } from "../../api/course";
 import { CreateCourseType } from "../../context/types";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    form: {
-      display: "flex",
-      flexDirection: "column",
-      maxWidth: "500px",
-      margin: "auto",
-      "& > *": {
-        margin: theme.spacing(1),
-        width: "100%",
-        maxWidth: "500px",
-      },
-    },
-    listItem: {
-      background: theme.palette.background.paper,
-    },
-  })
-);
+import { Grid } from "@material-ui/core";
 
 interface CreateCourseInterface {
   fetchTableData: () => {};
 }
 const CreateCourse: React.FC<CreateCourseInterface> = ({ fetchTableData }) => {
-  const classes = useStyles();
   const [course, setCourse] = useState<CreateCourseType>({ name: "" });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,21 +31,40 @@ const CreateCourse: React.FC<CreateCourseInterface> = ({ fetchTableData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.form}>
-      <Typography variant="h5" component="h1" align="center">
-        Create a new course
-      </Typography>
-      <TextField
-        label="Course name"
-        name="name"
-        value={course.name}
-        onChange={handleInputChange}
-        required
-      />
-      <Button type="submit" variant="contained" color="primary">
-        Create course
-      </Button>
-    </form>
+    <Grid
+      container
+      justifyContent="flex-start"
+      alignItems="center"
+      style={{ margin: 10 }}
+    >
+      <form onSubmit={handleSubmit}>
+        <Grid item>
+          <Typography variant="h5" component="h1" align="center">
+            Create a new course
+          </Typography>
+        </Grid>
+        <Grid item style={{ paddingBottom: 5 }}>
+          <TextField
+            label="Course name"
+            name="name"
+            value={course.name}
+            onChange={handleInputChange}
+            style={{ width: "220px" }}
+            required
+          />
+        </Grid>
+        <Grid item>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{ width: "220px" }}
+          >
+            Create course
+          </Button>
+        </Grid>
+      </form>
+    </Grid>
   );
 };
 

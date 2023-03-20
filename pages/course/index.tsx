@@ -5,6 +5,7 @@ import { fetchCourses } from "@/api/course";
 import { AxiosError } from "axios";
 import { ApiError } from "next/dist/server/api-utils";
 import { CourseType } from "@/context/types";
+import SearchCourse from "@/components/course/SearchCourse";
 
 const CreateCoursePage = () => {
   const [data, setData] = useState<CourseType[]>([]);
@@ -31,6 +32,7 @@ const CreateCoursePage = () => {
   return (
     <div>
       <CreateCourse fetchTableData={fetchTableData} />
+      <SearchCourse fetchTableData={fetchTableData} />
       <CourseTable courses={data} />
     </div>
   );

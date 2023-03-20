@@ -9,7 +9,6 @@ import {
   Paper,
 } from "@material-ui/core";
 import { Courses } from "@/context/types";
-
 import { useRouter } from "next/router";
 
 const useStyles = makeStyles({
