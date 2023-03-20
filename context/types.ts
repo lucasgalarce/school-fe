@@ -20,3 +20,15 @@ export type Student = {
   gender: string;
   siblings?: Student[];
 };
+
+export interface Students {
+  students: Student[];
+}
+
+export type CreateStudentType = {
+  firstname: string;
+  lastname: string;
+  gender: string;
+  age: number | null;
+  courseId: number | undefined;
+};
