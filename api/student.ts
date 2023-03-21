@@ -5,9 +5,9 @@ import { Student, CreateStudentType } from "../context/types";
 const apiHost = process.env.NEXT_PUBLIC_API_HOST ?? "";
 const base = apiHost + "/students";
 
-export const fetchStudents = async (name: string | undefined) => {
+export const fetchStudents = async (firstname: string | undefined) => {
   let url = base;
-  if (name) url += `?name=${name}`;
+  if (firstname) url += `?firstname=${firstname}`;
   const response: AxiosResponse<Student> = await api.get(`${url}`);
 
   return response.data;

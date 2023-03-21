@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 interface SearchInterface {
   fetchTableData: (name?: string) => {};
+  label: string;
 }
 
 function useDebounce(value: string, delay: number) {
@@ -16,7 +17,7 @@ function useDebounce(value: string, delay: number) {
   return debouncedValue;
 }
 
-const SearchCourse: React.FC<SearchInterface> = ({ fetchTableData }) => {
+const SearchCourse: React.FC<SearchInterface> = ({ fetchTableData, label }) => {
   const [searchValue, setSearchValue] = useState("");
   const queryDebouncedValue = useDebounce(searchValue, 300);
 
@@ -27,7 +28,7 @@ const SearchCourse: React.FC<SearchInterface> = ({ fetchTableData }) => {
   return (
     <Grid item style={{ paddingBottom: 5 }}>
       <TextField
-        label="Course name"
+        label={label}
         name="name"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
