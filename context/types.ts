@@ -32,3 +32,19 @@ export type CreateStudentType = {
   age: number | null;
   courseId: number | undefined;
 };
+
+export type AuthValuesType = {
+  loading: boolean;
+  setLoading: (value: boolean) => void;
+  logout: () => void;
+  isInitialized: boolean;
+  user: any;
+  setUser: (value: any) => void;
+  setIsInitialized: (value: boolean) => void;
+  login: (params: LoginParams) => void;
+};
+
+export type LoginParams = {
+  email: string;
+  password: string;
+};
