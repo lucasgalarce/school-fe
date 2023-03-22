@@ -26,7 +26,10 @@ const StudentTable: React.FC<Students> = ({ students }) => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      style={{ paddingLeft: 20, paddingRight: 20 }}
+    >
       <Table className={classes.table} aria-label="student table">
         <TableHead>
           <TableRow>

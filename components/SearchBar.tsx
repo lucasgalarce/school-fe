@@ -26,7 +26,7 @@ const SearchCourse: React.FC<SearchInterface> = ({ fetchTableData, label }) => {
   }, [queryDebouncedValue]);
 
   return (
-    <Grid item style={{ paddingBottom: 5 }}>
+    <Grid item style={{ paddingBottom: 5, paddingLeft: 20 }}>
       <TextField
         label={label}
         name="name"

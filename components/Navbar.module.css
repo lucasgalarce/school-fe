@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+    width: 95%;
+    height: 60px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    padding: 0;
+    color: black;
+    background-color: white;
+}
+
+.container__title {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.container__links a {
+    text-decoration: none;
+    color: black
+}

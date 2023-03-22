@@ -29,7 +29,7 @@ const CreateStudent: React.FC<CreateStudentInterface> = ({
         type="submit"
         variant="contained"
         color="primary"
-        style={{ width: "220px", marginTop: 10 }}
+        style={{ width: "220px", marginTop: 10, marginLeft: 20 }}
       >
         Add student
       </Button>

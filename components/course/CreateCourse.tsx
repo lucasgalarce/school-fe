@@ -34,7 +34,7 @@ const CreateCourse: React.FC<CreateCourseInterface> = ({ fetchTableData }) => {
       container
       justifyContent="flex-start"
       alignItems="center"
-      style={{ margin: 10 }}
+      style={{ marginTop: 10, marginBottom: 10, paddingLeft: 20 }}
     >
       <form onSubmit={handleSubmit}>
         <Grid item>
