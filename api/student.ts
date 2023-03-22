@@ -13,7 +13,7 @@ export const fetchStudents = async (firstname: string | undefined) => {
   return response.data;
 };
 
-export const fetchCourse = async (id: unknown) => {
+export const fetchStudent = async (id: unknown) => {
   const response: AxiosResponse = await api.get(`${base}/${id}`);
 
   return response.data;
