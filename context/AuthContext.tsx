@@ -4,9 +4,10 @@ import axios from "axios";
 
 import { config } from "../api/config";
 import { AuthValuesType, LoginParams } from "./types";
-import { setAuthHeader } from "../api";
+import { instance as api, setAuthHeader } from "../api";
 
 const loginEndpoint = `${config.apiHost}/auth/token`;
+const meEndpoint = `${config.apiHost}/auth/me`;
 const storageTokenKeyName = "accessToken";
 
 const defaultProvider: AuthValuesType = {
@@ -41,6 +42,16 @@ const AuthProvider = ({ children }: Props) => {
       if (storedToken) {
         setAuthHeader(storedToken);
         setLoading(true);
+        api
+          .get(meEndpoint)
+          .then((response) => {
+            setUser({ ...response.data });
+            setLoading(false);
+          })
+          .catch(() => {
+            setUser(null);
+            setLoading(false);
+          });
       } else {
         setLoading(false);
       }
@@ -54,6 +65,16 @@ const AuthProvider = ({ children }: Props) => {
       setAuthHeader(res.data.token);
       document.cookie = `auth=${res.data.token}`;
       window.localStorage.setItem(storageTokenKeyName, res.data.token);
+      api
+        .get(meEndpoint)
+        .then((response) => {
+          setUser({ ...response.data });
+          setLoading(false);
+        })
+        .catch(() => {
+          setUser(null);
+          setLoading(false);
+        });
       router.push("/course");
     });
   };
