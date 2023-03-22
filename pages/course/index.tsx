@@ -6,9 +6,11 @@ import { AxiosError } from "axios";
 import { ApiError } from "next/dist/server/api-utils";
 import { CourseType } from "@/context/types";
 import SearchBar from "@/components/SearchBar";
+import { useAuth } from "@/hooks/useAuth";
 
 const CoursePage = () => {
   const [data, setData] = useState<CourseType[]>([]);
+  const auth = useAuth();
 
   const fetchTableData = useCallback(async (name?: string) => {
     try {
@@ -31,8 +33,11 @@ const CoursePage = () => {
 
   return (
     <div>
-      <CreateCourse fetchTableData={fetchTableData} />
-      <SearchBar fetchTableData={fetchTableData} label="Course name" />
+      {auth.user && <CreateCourse fetchTableData={fetchTableData} />}
+      <SearchBar
+        fetchTableData={fetchTableData}
+        label="Search Course by name"
+      />
       <CourseTable courses={data} />
     </div>
   );

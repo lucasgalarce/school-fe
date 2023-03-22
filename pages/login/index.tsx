@@ -22,6 +22,7 @@ import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
 
 import { FormHelperText } from "@mui/material";
 import { useAuth } from "../../hooks/useAuth";
+import { useRouter } from "next/router";
 
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
   [theme.breakpoints.up("sm")]: { width: 450 },
@@ -44,9 +45,12 @@ export const loginSchema = yup.object().shape({
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-
+  const router = useRouter();
   const auth = useAuth();
 
+  if (auth.user) {
+    router.push("/course");
+  }
   const {
     control,
     handleSubmit,
@@ -58,18 +62,15 @@ const LoginPage = () => {
   });
 
   const handleLogin = (data: FormData) => {
-    console.log("handleLogin ", data);
     const { email, password } = data;
 
     auth.login({ email, password });
   };
 
   return (
-    <Box className="content-center">
+    <div className="container">
       <Card sx={{ zIndex: 1 }}>
-        <CardContent
-          sx={{ p: (theme) => `${theme.spacing(13, 7, 6.5)} !important` }}
-        >
+        <CardContent sx={{ p: (theme) => `${theme.spacing(0, 7, 6.5)}` }}>
           <Box
             sx={{
               mb: 8,
@@ -77,13 +78,7 @@ const LoginPage = () => {
               alignItems: "center",
               justifyContent: "center",
             }}
-          >
-            {/* <img
-              alt={"logo"}
-              src={"/images/logo.png"}
-              style={{ height: "5em", width: "auto" }}
-            /> */}
-          </Box>
+          ></Box>
           <Box sx={{ mb: 6 }}>
             <Typography
               variant="h5"
@@ -170,17 +165,7 @@ const LoginPage = () => {
                 flexWrap: "wrap",
                 justifyContent: "space-between",
               }}
-            >
-              {/* <Link passHref href="/forgot-password">
-                <Typography
-                  component={MuiLink}
-                  variant="body2"
-                  sx={{ color: "secondary.light" }}
-                >
-                  Forgot your password?
-                </Typography>
-              </Link> */}
-            </Box>
+            ></Box>
             <Button
               fullWidth
               size="large"
@@ -194,7 +179,19 @@ const LoginPage = () => {
           </form>
         </CardContent>
       </Card>
-    </Box>
+      <style jsx>
+        {`
+          .container {
+            width: 100%;
+            min-height: calc(100vh - 60px);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        `}
+      </style>
+    </div>
   );
 };
 
