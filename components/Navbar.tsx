@@ -19,7 +19,11 @@ const Navbar = () => {
         </Link>
 
         {auth.user ? (
-          <Button color="inherit">Admin</Button>
+          <Link href="/login">
+            <Button color="inherit" onClick={auth.logout}>
+              Admin Logout
+            </Button>
+          </Link>
         ) : (
           <Link href="/login">
             <Button color="inherit">Login</Button>
