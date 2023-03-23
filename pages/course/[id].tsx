@@ -7,6 +7,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TableContainer,
 } from "@material-ui/core";
 
 import { fetchCourse } from "../../api/course";
@@ -34,40 +35,49 @@ const CourseDetails = () => {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>
-        {course ? course.name : "None"}
+      <Typography
+        variant="h4"
+        gutterBottom
+        style={{ paddingLeft: 20, paddingRight: 20 }}
+      >
+        {course ? `Course: ${course.name}` : "None"}
       </Typography>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Age</TableCell>
-            <TableCell>Gender</TableCell>
-            <TableCell>Siblings</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {course?.students?.map((student) => (
-            <TableRow key={student.id}>
-              <TableCell>{student.firstname}</TableCell>
-              <TableCell>{student.lastname}</TableCell>
-              <TableCell>{student.age}</TableCell>
-              <TableCell>{student.gender}</TableCell>
-              <TableCell>
-                {student?.siblings?.length === 0 ? (
-                  "None"
-                ) : (
-                  <ul>
-                    {student?.siblings?.map((sibling) => (
-                      <li key={sibling.id}>{sibling.firstname}</li>
-                    ))}
-                  </ul>
-                )}
-              </TableCell>
+      <TableContainer style={{ paddingLeft: 20, paddingRight: 20 }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Firstname</TableCell>
+              <TableCell>Lastname</TableCell>
+              <TableCell>Age</TableCell>
+              <TableCell>Gender</TableCell>
+              <TableCell>Siblings</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {course?.students?.map((student) => (
+              <TableRow key={student.id}>
+                <TableCell>{student.firstname}</TableCell>
+                <TableCell>{student.lastname}</TableCell>
+                <TableCell>{student.age}</TableCell>
+                <TableCell>{student.gender}</TableCell>
+                <TableCell>
+                  {student?.siblings?.length === 0 ? (
+                    <p>None</p>
+                  ) : (
+                    <ul>
+                      {student?.siblings?.map((sibling) => (
+                        <li key={sibling.id}>
+                          {sibling.firstname} {sibling.lastname}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
