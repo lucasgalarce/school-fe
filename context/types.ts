@@ -29,7 +29,7 @@ export type CreateStudentType = {
   firstname: string;
   lastname: string;
   gender: string;
-  age: number | null;
+  age: number | string;
   courseId: number | undefined;
 };
 

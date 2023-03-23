@@ -21,7 +21,6 @@ const StudentDetails = () => {
   const fetchTableData = async (id: number) => {
     try {
       const item = await fetchStudent(id);
-      console.log("item ", item);
       if (!item)
         return <Typography variant="h5">Student not found.</Typography>;
       setStudent(item);

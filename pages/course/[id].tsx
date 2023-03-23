@@ -12,16 +12,18 @@ import {
 
 import { fetchCourse } from "../../api/course";
 import { CourseType } from "@/context/types";
+import CreateStudent from "@/components/student/CreateStudent";
+import { useAuth } from "@/hooks/useAuth";
 
 const CourseDetails = () => {
   const router = useRouter();
   const id = Number(router.query.id);
   const [course, setCourse] = useState<CourseType>();
+  const auth = useAuth();
 
   const fetchTableData = async (id: number) => {
     try {
       const item = await fetchCourse(id);
-      console.log("item ", item);
       if (!item) return <Typography variant="h5">Room not found.</Typography>;
       setCourse(item);
     } catch (err) {
@@ -30,7 +32,7 @@ const CourseDetails = () => {
   };
 
   useEffect(() => {
-    fetchTableData(id);
+    if (id) fetchTableData(id);
   }, [id]);
 
   return (
@@ -42,6 +44,8 @@ const CourseDetails = () => {
       >
         {course ? `Course: ${course.name}` : "None"}
       </Typography>
+      {auth.user && <CreateStudent fetchTableData={fetchTableData} />}
+
       <TableContainer style={{ paddingLeft: 20, paddingRight: 20 }}>
         <Table>
           <TableHead>

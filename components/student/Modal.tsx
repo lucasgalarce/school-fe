@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Grid, TextField, Button } from "@material-ui/core";
+import { useRouter } from "next/router";
 import { CreateStudentType } from "@/context/types";
 import { createStudent } from "../../api/student";
 
@@ -28,12 +29,14 @@ const StudentModal: React.FC<ModalInterface> = ({
   open,
   fetchTableData,
 }) => {
+  const router = useRouter();
+  const id = Number(router.query.id);
   const [student, setStudent] = React.useState<CreateStudentType>({
     firstname: "",
     lastname: "",
     gender: "",
-    age: null,
-    courseId: undefined,
+    age: "",
+    courseId: id || undefined,
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,4 +1,3 @@
-import { makeStyles } from "@material-ui/core/styles";
 import {
   Table,
   TableBody,
@@ -11,14 +10,7 @@ import {
 import { Courses } from "@/context/types";
 import { useRouter } from "next/router";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
-
 const CourseTable: React.FC<Courses> = ({ courses }) => {
-  const classes = useStyles();
   const router = useRouter();
 
   const handleCourseClick = (id: number) => {
@@ -30,7 +22,7 @@ const CourseTable: React.FC<Courses> = ({ courses }) => {
       component={Paper}
       style={{ paddingLeft: 20, paddingRight: 20 }}
     >
-      <Table className={classes.table} aria-label="course table">
+      <Table style={{ minWidth: 650 }} aria-label="course table">
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>

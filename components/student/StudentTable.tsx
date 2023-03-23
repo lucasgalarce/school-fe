@@ -11,14 +11,7 @@ import {
 import { Students } from "@/context/types";
 import { useRouter } from "next/router";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
-
 const StudentTable: React.FC<Students> = ({ students }) => {
-  const classes = useStyles();
   const router = useRouter();
 
   const handleStudentClick = (id: number) => {
@@ -30,7 +23,7 @@ const StudentTable: React.FC<Students> = ({ students }) => {
       component={Paper}
       style={{ paddingLeft: 20, paddingRight: 20 }}
     >
-      <Table className={classes.table} aria-label="student table">
+      <Table style={{ minWidth: 650 }} aria-label="student table">
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
