@@ -22,7 +22,7 @@ const style = {
 interface ModalInterface {
   handleModal: () => void;
   open: boolean;
-  fetchTableData: () => {};
+  fetchTableData: (id?: number) => {};
 }
 const StudentModal: React.FC<ModalInterface> = ({
   handleModal,
@@ -48,7 +48,8 @@ const StudentModal: React.FC<ModalInterface> = ({
     event.preventDefault();
     try {
       await createStudent(student);
-      fetchTableData();
+      if (id) fetchTableData(id);
+      else fetchTableData();
       handleModal();
     } catch (err) {
       console.log(err);

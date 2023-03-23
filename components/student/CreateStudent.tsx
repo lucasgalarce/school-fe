@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import StudentModal from "./Modal";
 
 interface CreateStudentInterface {
-  fetchTableData: () => {};
+  fetchTableData: (id?: number) => {};
 }
 const CreateStudent: React.FC<CreateStudentInterface> = ({
   fetchTableData,
